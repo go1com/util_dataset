@@ -10,7 +10,7 @@ use ONGR\ElasticsearchDSL\Search;
 /**
  * GET #staff/devel/php
  *
- * echo \go1\util_dataset\staff\dump\EnrolmentDumper::dump($app['go1.client.es'], 500592);
+ * echo \go1\util_dataset\staff\dumper\EnrolmentDumper::dump($app['go1.client.es'], 500592);
  */
 class EnrolmentDumper
 {

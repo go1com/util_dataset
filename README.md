@@ -9,9 +9,9 @@ Easier for developer to setup data-set for test cases.
 # GET #staff/devel/php
 
 <?php
-echo \go1\util_dataset\staff\dump\AccountDumper::dump($app['go1.client.es'], $portalId = 500592);
-echo \go1\util_dataset\staff\dump\EnrolmentDumper::dump($app['go1.client.es'], $portalId);
-echo \go1\util_dataset\staff\dump\LoDumper::dump($app['go1.client.es'], $portalId);
+echo \go1\util_dataset\staff\dumper\AccountDumper::dump($app['go1.client.es'], $portalId = 500592);
+echo \go1\util_dataset\staff\dumper\EnrolmentDumper::dump($app['go1.client.es'], $portalId);
+echo \go1\util_dataset\staff\dumper\LoDumper::dump($app['go1.client.es'], $portalId);
 ```
 
 ## Import data

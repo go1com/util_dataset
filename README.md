@@ -20,7 +20,7 @@ echo \go1\util_dataset\staff\dump\LoDumper::dump($app['go1.client.es'], $portalI
 <?php
 
 class MyTest extends \PHPUnit\Framework\TestCase {
-    use \go1\util_dataset\ElasticSearchJsonImporting;
+    use \go1\util_dataset\ElasticSearchJsonImportingTrait;
     
     public function test() {
         /** @var \go1\app\App $app */

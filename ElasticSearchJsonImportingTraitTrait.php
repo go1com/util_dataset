@@ -15,7 +15,7 @@ use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
 use ONGR\ElasticsearchDSL\Search;
 use stdClass;
 
-trait ElasticSearchJsonImporting
+trait ElasticSearchJsonImportingTrait
 {
     protected function importMapping(string $jsonDirectory)
     {

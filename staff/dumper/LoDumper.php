@@ -11,7 +11,7 @@ use ONGR\ElasticsearchDSL\Search;
 /**
  * GET #staff/devel/php
  *
- * echo \go1\util_dataset\staff\dump\LoDumper::dump($app['go1.client.es'], 500592);
+ * echo \go1\util_dataset\staff\dumper\LoDumper::dump($app['go1.client.es'], 500592);
  */
 class LoDumper
 {

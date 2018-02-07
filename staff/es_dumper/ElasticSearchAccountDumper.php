@@ -9,9 +9,9 @@ use go1\util_es\Scroll;
 /**
  * GET #staff/devel/php
  *
- * echo \go1\util_dataset\staff\dumper\AccountDumper::dump($app['go1.client.es'], 500592);
+ * echo \go1\util_dataset\staff\es_dumper\ElasticSearchAccountDumper::dump($app['go1.client.es'], 500592);
  */
-class AccountDumper
+class ElasticSearchAccountDumper
 {
     public static function dump(Client $client, int $portalId)
     {

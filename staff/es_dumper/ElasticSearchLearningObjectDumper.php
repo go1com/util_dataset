@@ -11,9 +11,9 @@ use ONGR\ElasticsearchDSL\Search;
 /**
  * GET #staff/devel/php
  *
- * echo \go1\util_dataset\staff\dumper\LoDumper::dump($app['go1.client.es'], 500592);
+ * echo \go1\util_dataset\staff\es_dumper\ElasticSearchLearningObjectDumper::dump($app['go1.client.es'], 500592);
  */
-class LoDumper
+class ElasticSearchLearningObjectDumper
 {
     public static function dump(Client $client, int $portalId, $loTypes = ['course', 'award'])
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace go1\util_dataset\staff\dumper;
+namespace go1\util_dataset\staff\es_dumper;
 
 use Elasticsearch\Client;
 use go1\util\es\Schema;

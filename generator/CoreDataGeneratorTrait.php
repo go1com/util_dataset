@@ -38,56 +38,57 @@ trait CoreDataGeneratorTrait
 
     # User › Portal admin
     # ---------------------
-    protected $userAdminUuid = '1a24235e-30f6-49cb-9e5c-3aaeff046288';
+    protected $userAdminUuid      = '1a24235e-30f6-49cb-9e5c-3aaeff046288';
     protected $userAdminId;
     protected $userAdminAccountId;
-    protected $userAdminMail;
-    protected $userAdminFirstName;
-    protected $userAdminLastName;
+    protected $userAdminMail      = 'dang.phan@qa.com';
+    protected $userAdminFirstName = 'Dang';
+    protected $userAdminLastName  = 'Phan';
 
     # User › Manager
     # ---------------------
-    protected $userManagerUuid;
+    protected $userManagerUuid      = 'fbe840af-123a-4136-9c79-2bdd86c19748';
     protected $userManagerId;
     protected $userManagerAccountId;
-    protected $userManagerMail;
-    protected $userManagerFirstName;
-    protected $userManagerLastName;
+    protected $userManagerMail      = 'kien.nguyen@qa.com';
+    protected $userManagerFirstName = 'Kien';
+    protected $userManagerLastName  = 'Nguyen';
 
     # User › Course assessor
     # ---------------------
-    protected $userCourseAssessorUuid;
+    protected $userCourseAssessorUuid      = '234f2a74-a308-47bd-a6d4-d1488d840233';
     protected $userCourseAssessorId;
     protected $userCourseAssessorAccountId;
-    protected $userCourseAssessorMail;
-    protected $userCourseAssessorFirstName;
-    protected $userCourseAssessorLastName;
+    protected $userCourseAssessorMail      = 'si.nguyen@qa.com';
+    protected $userCourseAssessorFirstName = 'Si';
+    protected $userCourseAssessorLastName  = 'Nguyen';
 
     # User › Enrolment assessor
     # ---------------------
+    protected $userEnrolmentAssessorUuid      = '903d044e-8945-4115-ae36-526452501c15';
     protected $userEnrolmentAssessorId;
     protected $userEnrolmentAssessorAccountId;
-    protected $userEnrolmentAssessorMail;
-    protected $userEnrolmentAssessorFirstName;
-    protected $userEnrolmentAssessorLastName;
+    protected $userEnrolmentAssessorMail      = 'thu.le@qa.com';
+    protected $userEnrolmentAssessorFirstName = 'Thu';
+    protected $userEnrolmentAssessorLastName  = 'Le';
 
     # User › Learner 1
     # ---------------------
-    protected $userLearner1Uuid = '51eb3cc1-b65c-4278-94fa-62005e5df5d7';
+    protected $userLearner1Uuid      = '51eb3cc1-b65c-4278-94fa-62005e5df5d7';
     protected $userLearner1Id;
     protected $userLearner1AccountId;
-    protected $userLearner1Mail;
-    protected $userLearner1FirstName;
-    protected $userLearner1LastName;
+    protected $userLearner1Mail      = 'chau.pham@qa.com';
+    protected $userLearner1FirstName = 'Chau';
+    protected $userLearner1LastName  = 'Pham';
 
     # User › Learner 2
     # ---------------------
-    protected $userLearner2Uuid = 'bf650d4e-e33d-4cbb-be10-df6334e8120c';
+    protected $userLearner2Uuid      = 'bf650d4e-e33d-4cbb-be10-df6334e8120c';
     protected $userLearner2Id;
     protected $userLearner2AccountId;
-    protected $userLearner2Mail;
-    protected $userLearner2FirstName;
-    protected $userLearner2LastName;
+    protected $userLearner2Mail      = 'quan.vo@qa.com';
+    protected $userLearner2FirstName = 'Quan';
+    protected $userLearner2LastName  = 'Vo';
 
     # Course: Making web 101
     #   Event:

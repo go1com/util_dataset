@@ -35,7 +35,7 @@ trait ElasticSearchJsonImportingTrait
             if (!file_exists($file)) {
                 continue;
             }
-            
+
             $objects = json_decode(file_get_contents($file));
 
             foreach ($objects as $object) {

@@ -4,6 +4,7 @@ namespace go1\util_dataset\generator;
 
 use Doctrine\DBAL\Connection;
 use go1\util\edge\EdgeTypes;
+use go1\util\lo\LiTypes;
 use go1\util\portal\PortalHelper;
 use go1\util\schema\mock\InstanceMockTrait;
 use go1\util\schema\mock\LoMockTrait;
@@ -229,10 +230,27 @@ trait CoreDataGeneratorTrait
         $api = new class
         {
             use LoMockTrait;
+            use UserMockTrait;
         };
 
         $this->courseWebId = $api->createCourse($go1, ['instance_id' => $this->portalId, 'title' => $this->courseWebId]);
         $this->moduleHtmlId = $api->createModule($go1, ['instance_id' => $this->portalId, 'title' => $this->moduleHtmlTitle]);
         $this->moduleCssId = $api->createModule($go1, ['instance_id' => $this->portalId, 'title' => $this->moduleCssTitle]);
+        $this->eventUnderstandWebIn4HoursId = $api->createLO($go1, [
+            'instance_id' => $this->portalId,
+            'type'        => LiTypes::EVENT,
+            'title'       => $this->eventUnderstandWebIn4HoursTitle,
+        ]);
+
+        $this->eventWeb4EveryOneId = $api->createLO($go1, [
+            'instance_id' => $this->portalId,
+            'type'        => LiTypes::EVENT,
+            'title'       => $this->eventWeb4EveryOneTitle,
+        ]);
+
+        $api->link($go1, EdgeTypes::HAS_MODULE, $this->courseWebId, $this->moduleHtmlId);
+        $api->link($go1, EdgeTypes::HAS_MODULE, $this->courseWebId, $this->moduleCssId);
+        $api->link($go1, EdgeTypes::HAS_LI, $this->courseWebId, $this->eventWeb4EveryOneId);
+        $api->link($go1, EdgeTypes::HAS_LI, $this->courseWebId, $this->eventUnderstandWebIn4HoursId);
     }
 }

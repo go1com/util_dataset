@@ -217,14 +217,14 @@ trait CoreDataGeneratorTrait
         $api->link(
             $go1,
             EdgeTypes::HAS_ACCOUNT,
-            $this->userLearner1Id = $api->createUser($go1, [
+            $this->userLearner2Id = $api->createUser($go1, [
                 'instance'   => $accountsName,
                 'uuid'       => $this->userLearner2Uuid,
                 'mail'       => $this->userLearner2Mail,
                 'first_name' => $this->userLearner2FirstName,
                 'last_name'  => $this->userLearner2LastName,
             ]),
-            $this->userLearner1AccountId = $api->createUser($go1, [
+            $this->userLearner2AccountId = $api->createUser($go1, [
                 'instance'   => $this->portalName,
                 'mail'       => $this->userLearner2Mail,
                 'first_name' => $this->userLearner2FirstName,

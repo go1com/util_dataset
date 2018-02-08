@@ -210,7 +210,7 @@ trait CoreDataGeneratorTrait
                 'last_name'  => $this->userLearner1LastName,
             ])
         );
-        $this->userLearner1JWT = $api->createUser($go1, $this->userLearner1Id, $this->portalName);
+        $this->userLearner1JWT = $api->jwtForUser($go1, $this->userLearner1Id, $this->portalName);
 
         # User › Learner 2
         # ---------------------
@@ -232,7 +232,7 @@ trait CoreDataGeneratorTrait
             ])
         );
 
-        $this->userLearner2JWT = $api->createUser($go1, $this->userLearner2Id, $this->portalName);
+        $this->userLearner2JWT = $api->jwtForUser($go1, $this->userLearner2Id, $this->portalName);
     }
 
     protected function generateLearningData(Connection $go1)

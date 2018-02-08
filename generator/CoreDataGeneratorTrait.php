@@ -98,19 +98,21 @@ trait CoreDataGeneratorTrait
     #       2. Introduction to CSS
     # ---------------------
     protected $courseWebId;
-    protected $courseTitle                     = 'Making web 101';
-    protected $coursePublished                 = true;
-    protected $courseMarketplace               = false;
+    protected $courseTitle                              = 'Making web 101';
+    protected $coursePublished                          = true;
+    protected $courseMarketplace                        = false;
     protected $eventUnderstandWebIn4HoursId;
-    protected $eventUnderstandWebIn4HoursTitle = 'Understand WEB in 4 hours';
+    protected $eventUnderstandWebIn4HoursTitle          = 'Understand WEB in 4 hours';
+    protected $eventUnderstandWebIn4HoursAvailableSeats = 20;
     protected $eventWeb4EveryOneId;
-    protected $eventWeb4EveryOneTitle          = '[MEET-UP] Web for everyone';
+    protected $eventWeb4EveryOneTitle                   = '[MEET-UP] Web for everyone';
+    protected $eventWeb4EveryOneAvailableSeats          = -1; # yeah: FOR ALL, all can come!
     protected $module1Id;
-    protected $moduleTitle                     = 'Basics of HTML';
+    protected $moduleTitle                              = 'Basics of HTML';
     protected $moduleHtmlId;
-    protected $moduleHtmlTitle                 = 'Basics of HTML';
+    protected $moduleHtmlTitle                          = 'Basics of HTML';
     protected $moduleCssId;
-    protected $moduleCssTitle                  = 'Introduction to CSS';
+    protected $moduleCssTitle                           = 'Introduction to CSS';
 
     protected function generatePortalData(Connection $go1, string $accountsName, bool $userData = true, bool $learningData = true)
     {
@@ -242,10 +244,20 @@ trait CoreDataGeneratorTrait
             'title'       => $this->eventUnderstandWebIn4HoursTitle,
         ]);
 
+        $api->createEvent($go1, $this->eventUnderstandWebIn4HoursId, [
+            'start' => '2018-01-26T08:19:00+0000',
+            'seats' => $this->eventUnderstandWebIn4HoursAvailableSeats,
+        ]);
+
         $this->eventWeb4EveryOneId = $api->createLO($go1, [
             'instance_id' => $this->portalId,
             'type'        => LiTypes::EVENT,
             'title'       => $this->eventWeb4EveryOneTitle,
+        ]);
+
+        $api->createEvent($go1, $this->eventWeb4EveryOneId, [
+            'start' => '2018-01-26T08:19:00+0000',
+            'seats' => $this->eventWeb4EveryOneAvailableSeats,
         ]);
 
         $api->link($go1, EdgeTypes::HAS_MODULE, $this->courseWebId, $this->moduleHtmlId);

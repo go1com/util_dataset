@@ -42,34 +42,32 @@ trait CoreDataGeneratorTrait
     protected $userAdminId;
     protected $userAdminAccountId;
     protected $userAdminMail;
-    protected $userAdminFirstName;
-    protected $userAdminLastName;
+    protected $userAdminFirstName = 'Foo.PortalAdmin';
+    protected $userAdminLastName  = 'Bar.PortalAdmin';
 
     # User › Manager
     # ---------------------
-    protected $userManagerUuid;
     protected $userManagerId;
     protected $userManagerAccountId;
     protected $userManagerMail;
-    protected $userManagerFirstName;
-    protected $userManagerLastName;
+    protected $userManagerFirstName = 'Foo.UserManager';
+    protected $userManagerLastName  = 'Bar.UserManager';
 
     # User › Course assessor
     # ---------------------
-    protected $userCourseAssessorUuid;
     protected $userCourseAssessorId;
     protected $userCourseAssessorAccountId;
     protected $userCourseAssessorMail;
-    protected $userCourseAssessorFirstName;
-    protected $userCourseAssessorLastName;
+    protected $userCourseAssessorFirstName = 'Foo.CourseAssessor';
+    protected $userCourseAssessorLastName  = 'Bar.CourseAssessor';
 
     # User › Enrolment assessor
     # ---------------------
     protected $userEnrolmentAssessorId;
     protected $userEnrolmentAssessorAccountId;
     protected $userEnrolmentAssessorMail;
-    protected $userEnrolmentAssessorFirstName;
-    protected $userEnrolmentAssessorLastName;
+    protected $userEnrolmentAssessorFirstName = 'Foo.EnrolmentAssessor';
+    protected $userEnrolmentAssessorLastName  = 'Bar.EnrolmentAssessor';
 
     # User › Learner 1
     # ---------------------
@@ -77,8 +75,8 @@ trait CoreDataGeneratorTrait
     protected $userLearner1Id;
     protected $userLearner1AccountId;
     protected $userLearner1Mail;
-    protected $userLearner1FirstName;
-    protected $userLearner1LastName;
+    protected $userLearner1FirstName = 'Foo.Learner1';
+    protected $userLearner1LastName  = 'Bar.Learner1';
 
     # User › Learner 2
     # ---------------------
@@ -86,8 +84,8 @@ trait CoreDataGeneratorTrait
     protected $userLearner2Id;
     protected $userLearner2AccountId;
     protected $userLearner2Mail;
-    protected $userLearner2FirstName;
-    protected $userLearner2LastName;
+    protected $userLearner2FirstName = 'Foo.Learner2';
+    protected $userLearner2LastName  = 'Bar.Learner2';
 
     # Course: Making web 101
     #   Event:

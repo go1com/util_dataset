@@ -80,6 +80,7 @@ trait CoreDataGeneratorTrait
     protected $userLearner1Mail      = 'chau.pham@qa.com';
     protected $userLearner1FirstName = 'Chau';
     protected $userLearner1LastName  = 'Pham';
+    protected $userLearner1JWT;
 
     # User › Learner 2
     # ---------------------
@@ -89,6 +90,7 @@ trait CoreDataGeneratorTrait
     protected $userLearner2Mail      = 'quan.vo@qa.com';
     protected $userLearner2FirstName = 'Quan';
     protected $userLearner2LastName  = 'Vo';
+    protected $userLearner2JWT;
 
     # Course: Making web 101
     #   Event:
@@ -208,6 +210,7 @@ trait CoreDataGeneratorTrait
                 'last_name'  => $this->userLearner1LastName,
             ])
         );
+        $this->userLearner1JWT = $api->createUser($go1, $this->userLearner1Id, $this->portalName);
 
         # User › Learner 2
         # ---------------------
@@ -228,6 +231,8 @@ trait CoreDataGeneratorTrait
                 'last_name'  => $this->userLearner2LastName,
             ])
         );
+
+        $this->userLearner2JWT = $api->createUser($go1, $this->userLearner2Id, $this->portalName);
     }
 
     protected function generateLearningData(Connection $go1)

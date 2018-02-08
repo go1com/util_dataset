@@ -76,6 +76,7 @@ trait CoreDataGeneratorTrait
     # ---------------------
     protected $userLearner1Uuid      = '51eb3cc1-b65c-4278-94fa-62005e5df5d7';
     protected $userLearner1Id;
+    protected $userLearner1ProfileId = 6699;
     protected $userLearner1AccountId;
     protected $userLearner1Mail      = 'chau.pham@qa.com';
     protected $userLearner1FirstName = 'Chau';
@@ -86,6 +87,7 @@ trait CoreDataGeneratorTrait
     # ---------------------
     protected $userLearner2Uuid      = 'bf650d4e-e33d-4cbb-be10-df6334e8120c';
     protected $userLearner2Id;
+    protected $userLearner2ProfileId = 6969;
     protected $userLearner2AccountId;
     protected $userLearner2Mail      = 'quan.vo@qa.com';
     protected $userLearner2FirstName = 'Quan';
@@ -200,6 +202,7 @@ trait CoreDataGeneratorTrait
                 'instance'   => $accountsName,
                 'uuid'       => $this->userLearner1Uuid,
                 'mail'       => $this->userLearner1Mail,
+                'profile_id' => $this->userLearner1ProfileId,
                 'first_name' => $this->userLearner1FirstName,
                 'last_name'  => $this->userLearner1LastName,
             ]),
@@ -221,6 +224,7 @@ trait CoreDataGeneratorTrait
                 'instance'   => $accountsName,
                 'uuid'       => $this->userLearner2Uuid,
                 'mail'       => $this->userLearner2Mail,
+                'profile_id' => $this->userLearner2ProfileId,
                 'first_name' => $this->userLearner2FirstName,
                 'last_name'  => $this->userLearner2LastName,
             ]),

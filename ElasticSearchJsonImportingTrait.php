@@ -9,6 +9,7 @@ use go1\util\edge\EdgeTypes;
 use go1\util\enrolment\EnrolmentStatuses;
 use go1\util\es\Schema;
 use go1\util\schema\mock\EnrolmentMockTrait;
+use go1\util\schema\mock\InstanceMockTrait;
 use go1\util\schema\mock\LoMockTrait;
 use go1\util\schema\mock\UserMockTrait;
 use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
@@ -21,6 +22,7 @@ trait ElasticSearchJsonImportingTrait
     {
         return [
             # Order is important
+            Schema::O_ENROLMENT => $jsonDirectory . '/portal.json',
             Schema::O_ENROLMENT => $jsonDirectory . '/enrolments.json',
             Schema::O_ACCOUNT   => $jsonDirectory . '/accounts.json',
             Schema::O_LO        => $jsonDirectory . '/learning-objects.json',
@@ -30,11 +32,15 @@ trait ElasticSearchJsonImportingTrait
     protected function import(Connection $go1, Client $es, string $portalIndex, string $accountsName, string $jsonDirectory)
     {
         foreach (static::importMapping($jsonDirectory) as $type => $file) {
+            if (!file_exists($file)) {
+                continue;
+            }
+            
             $objects = json_decode(file_get_contents($file));
 
             foreach ($objects as $object) {
                 $es->index([
-                    'index'   => $portalIndex,
+                    'index'   => (Schema::O_PORTAL == $type) ? Schema::INDEX : $portalIndex,
                     'routing' => $portalIndex,
                     'type'    => $type,
                     'id'      => $object->id,
@@ -43,6 +49,10 @@ trait ElasticSearchJsonImportingTrait
                 ]);
 
                 switch ($type) {
+                    case Schema::O_PORTAL:
+                        $this->importPortal($go1, $es, $portalIndex, $object);
+                        break;
+
                     case Schema::O_ENROLMENT:
                         $this->importEnrolment($go1, $es, $portalIndex, $object);
                         break;
@@ -58,6 +68,29 @@ trait ElasticSearchJsonImportingTrait
                 }
             }
         }
+    }
+
+    protected function importPortal(Connection $go1, Client $es, $portalIndex, $object)
+    {
+        $api = new class
+        {
+            use InstanceMockTrait;
+
+            public function createPortal(Connection $db, array $options)
+            {
+                return $this->createInstance($db, $options);
+            }
+        };
+
+        $api->createPortal($go1, [
+            'id'        => $object->id,
+            'title'     => $object->title,
+            'status'    => $object->status,
+            'version'   => $object->version,
+            'data'      => [],
+            'timestamp' => time(),
+            'created'   => time(),
+        ]);
     }
 
     protected function importEnrolment(Connection $go1, Client $es, string $portalIndex, $object)

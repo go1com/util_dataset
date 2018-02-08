@@ -2,7 +2,6 @@
   "name": "go1/util_dataset",
   "license": "proprietary",
   "prefer-stable": true,
-  "minimum-stability": "stable",
   "autoload": {
     "psr-4": {
       "go1\\util_dataset\\": "./"

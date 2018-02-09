@@ -40,6 +40,7 @@ trait CoreDataGeneratorTrait
     # ---------------------
     protected $userAdminUuid      = '1a24235e-30f6-49cb-9e5c-3aaeff046288';
     protected $userAdminId;
+    protected $userAdminProfileId = 119911;
     protected $userAdminAccountId;
     protected $userAdminMail      = 'dang.phan@qa.com';
     protected $userAdminFirstName = 'Dang';
@@ -191,6 +192,7 @@ trait CoreDataGeneratorTrait
         $this->userAdminId = $api->createUser($go1, [
             'instance'   => $accountsName,
             'uuid'       => $this->userAdminUuid,
+            'profile_id' => $this->userAdminProfileId,
             'mail'       => $this->userAdminMail,
             'first_name' => $this->userAdminFirstName,
             'last_name'  => $this->userAdminLastName,
@@ -285,10 +287,11 @@ trait CoreDataGeneratorTrait
         };
 
         $this->courseWebId = $api->createCourse($go1, ['instance_id' => $this->portalId, 'title' => $this->courseWebId, 'published' => $this->courseWebPublished, 'marketplace' => $this->courseWebMarketplace]);
+
         if ($this->courseWebAuthorMail) {
             $authorUserId = $go1->fetchColumn('SELECT id FROM gc_user WHERE instance = ? AND mail = ?', [$accountsName, $this->courseWebAuthorMail]);
             if ($authorUserId) {
-                $api->link($go1, EdgeTypes::HAS_AUTHOR, $this->courseWebId, $authorUserId);
+                $api->link($go1, EdgeTypes::HAS_AUTHOR_EDGE, $this->courseWebId, $authorUserId);
             }
         }
 

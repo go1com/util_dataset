@@ -212,7 +212,7 @@ trait CoreDataGeneratorTrait
         $api->link(
             $go1,
             EdgeTypes::HAS_ACCOUNT,
-            $this->userCourseAuthorAccountId = $api->createUser($go1, [
+            $this->userCourseAuthorId = $api->createUser($go1, [
                 'instance'   => $accountsName,
                 'uuid'       => $this->userCourseAuthorUuid,
                 'mail'       => $this->userCourseAuthorMail,
@@ -220,14 +220,15 @@ trait CoreDataGeneratorTrait
                 'first_name' => $this->userCourseAuthorFirstName,
                 'last_name'  => $this->userCourseAuthorLastName,
             ]),
-            $this->userLearner1AccountId = $api->createUser($go1, [
+            $this->userCourseAuthorAccountId = $api->createUser($go1, [
                 'instance'   => $this->portalName,
-                'mail'       => $this->userLearner1Mail,
-                'first_name' => $this->userLearner1FirstName,
-                'last_name'  => $this->userLearner1LastName,
+                'mail'       => $this->userCourseAuthorMail,
+                'first_name' => $this->userCourseAuthorFirstName,
+                'last_name'  => $this->userCourseAuthorLastName,
             ])
         );
-        $this->userLearner1JWT = $api->jwtForUser($go1, $this->userLearner1Id, $this->portalName);
+
+        $this->userCourseAuthorJwt = $api->jwtForUser($go1, $this->userCourseAuthorId, $this->portalName);
 
         # User › Learner 1
         # ---------------------

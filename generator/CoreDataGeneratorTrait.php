@@ -55,6 +55,17 @@ trait CoreDataGeneratorTrait
     protected $userManagerFirstName = 'Kien';
     protected $userManagerLastName  = 'Nguyen';
 
+    # User › Course author
+    # ---------------------
+    protected $userCourseAuthorUuid      = '6cf00234-918e-46f1-b4e2-11aa0467d31d';
+    protected $userCourseAuthorId;
+    protected $userCourseAuthorAccountId;
+    protected $userCourseAuthorMail      = 'tham.vu@qa.com';
+    protected $userCourseAuthorProfileId = 99125;
+    protected $userCourseAuthorFirstName = 'Tham';
+    protected $userCourseAuthorLastName  = 'Vu';
+    protected $userCourseAuthorJwt;
+
     # User › Course assessor
     # ---------------------
     protected $userCourseAssessorUuid      = '234f2a74-a308-47bd-a6d4-d1488d840233';
@@ -104,9 +115,10 @@ trait CoreDataGeneratorTrait
     #       2. Introduction to CSS
     # ---------------------
     protected $courseWebId;
-    protected $courseTitle                              = 'Making web 101';
-    protected $coursePublished                          = true;
-    protected $courseMarketplace                        = false;
+    protected $courseWebTitle                           = 'Making web 101';
+    protected $courseWebPublished                       = true;
+    protected $courseWebMarketplace                     = false;
+    protected $courseWebAuthorMail                      = 'tham.vu@qa.com';
     protected $eventUnderstandWebIn4HoursLiId;
     protected $eventUnderstandWebIn4HoursId;
     protected $eventUnderstandWebIn4HoursTitle          = 'Understand WEB in 4 hours';
@@ -162,7 +174,7 @@ trait CoreDataGeneratorTrait
             $this->generateUserData($go1, $accountsName);
 
             if ($learningData) {
-                $this->generateLearningData($go1);
+                $this->generateLearningData($go1, $accountsName);
             }
         }
     }
@@ -194,6 +206,28 @@ trait CoreDataGeneratorTrait
         $api->link($go1, EdgeTypes::HAS_ACCOUNT, $this->userAdminId, $this->userAdminAccountId);
         $api->link($go1, EdgeTypes::HAS_ROLE, $this->userAdminAccountId, $this->portalRoleAdminId);
         $this->userAdminJwt = $api->jwtForUser($go1, $this->userAdminId, $this->portalName);
+
+        # User › Course author
+        # ---------------------
+        $api->link(
+            $go1,
+            EdgeTypes::HAS_ACCOUNT,
+            $this->userCourseAuthorAccountId = $api->createUser($go1, [
+                'instance'   => $accountsName,
+                'uuid'       => $this->userCourseAuthorUuid,
+                'mail'       => $this->userCourseAuthorMail,
+                'profile_id' => $this->userCourseAuthorProfileId,
+                'first_name' => $this->userCourseAuthorFirstName,
+                'last_name'  => $this->userCourseAuthorLastName,
+            ]),
+            $this->userLearner1AccountId = $api->createUser($go1, [
+                'instance'   => $this->portalName,
+                'mail'       => $this->userLearner1Mail,
+                'first_name' => $this->userLearner1FirstName,
+                'last_name'  => $this->userLearner1LastName,
+            ])
+        );
+        $this->userLearner1JWT = $api->jwtForUser($go1, $this->userLearner1Id, $this->portalName);
 
         # User › Learner 1
         # ---------------------
@@ -241,7 +275,7 @@ trait CoreDataGeneratorTrait
         $this->userLearner2JWT = $api->jwtForUser($go1, $this->userLearner2Id, $this->portalName);
     }
 
-    protected function generateLearningData(Connection $go1)
+    protected function generateLearningData(Connection $go1, string $accountsName)
     {
         $api = new class
         {
@@ -249,7 +283,14 @@ trait CoreDataGeneratorTrait
             use UserMockTrait;
         };
 
-        $this->courseWebId = $api->createCourse($go1, ['instance_id' => $this->portalId, 'title' => $this->courseWebId]);
+        $this->courseWebId = $api->createCourse($go1, ['instance_id' => $this->portalId, 'title' => $this->courseWebId, 'published' => $this->courseWebPublished, 'marketplace' => $this->courseWebMarketplace]);
+        if ($this->courseWebAuthorMail) {
+            $authorUserId = $go1->fetchColumn('SELECT id FROM gc_user WHERE instance = ? AND mail = ?', [$accountsName, $this->courseWebAuthorMail]);
+            if ($authorUserId) {
+                $api->link($go1, EdgeTypes::HAS_AUTHOR, $this->courseWebId, $authorUserId);
+            }
+        }
+
         $this->moduleHtmlId = $api->createModule($go1, ['instance_id' => $this->portalId, 'title' => $this->moduleHtmlTitle]);
         $this->moduleCssId = $api->createModule($go1, ['instance_id' => $this->portalId, 'title' => $this->moduleCssTitle]);
         $this->eventUnderstandWebIn4HoursLiId = $api->createLO($go1, [

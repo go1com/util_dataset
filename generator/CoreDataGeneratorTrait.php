@@ -44,6 +44,7 @@ trait CoreDataGeneratorTrait
     protected $userAdminMail      = 'dang.phan@qa.com';
     protected $userAdminFirstName = 'Dang';
     protected $userAdminLastName  = 'Phan';
+    protected $userAdminJwt;
 
     # User › Manager
     # ---------------------
@@ -97,7 +98,7 @@ trait CoreDataGeneratorTrait
     # Course: Making web 101
     #   Event:
     #       1. Understand the web in 4 hours.
-    #       2. Web for everyone meet-up
+    #       2. Web for everyone meet-up.
     #   Modules:
     #       1. Basics of HTML
     #       2. Introduction to CSS
@@ -192,6 +193,7 @@ trait CoreDataGeneratorTrait
 
         $api->link($go1, EdgeTypes::HAS_ACCOUNT, $this->userAdminId, $this->userAdminAccountId);
         $api->link($go1, EdgeTypes::HAS_ROLE, $this->userAdminAccountId, $this->portalRoleAdminId);
+        $this->userAdminJwt = $api->jwtForUser($go1, $this->userAdminId, $this->portalName);
 
         # User › Learner 1
         # ---------------------

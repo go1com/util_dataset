@@ -5,7 +5,7 @@ Easier for developer to setup data-set for test cases.
 
 ## Dump data
 
-    php $MONOLOITH/scripts/dummy/dataset.php main --user=$USER_NAME $PORTAL_ID
+    php $MONOLITH/scripts/dummy/dataset.php main --user=$USER_NAME $PORTAL_ID
 
 ## Import data
 

@@ -5,15 +5,7 @@ Easier for developer to setup data-set for test cases.
 
 ## Dump data
 
-```
-# GET #staff/devel/php
-
-<?php
-echo \go1\util_dataset\staff\es_dumper\ElasticSearchPortalDumper::dump($app['go1.client.es'], $portalId = 500592);
-echo \go1\util_dataset\staff\es_dumper\ElasticSearchAccountDumper::dump($app['go1.client.es'], $portalId = 500592);
-echo \go1\util_dataset\staff\es_dumper\ElasticSearchEnrolmentDumper::dump($app['go1.client.es'], $portalId);
-echo \go1\util_dataset\staff\es_dumper\ElasticSearchLearningObjectDumper::dump($app['go1.client.es'], $portalId);
-```
+    php $MONOLOITH/scripts/dummy/dataset.php main --user=$USER_NAME $PORTAL_ID
 
 ## Import data
 

@@ -25,3 +25,18 @@ class MyTest extends \PHPUnit\Framework\TestCase {
     }
 }
 ```
+
+## Data generator
+
+```php
+<?php
+
+class MyTest extends \PHPUnit\Framework\TestCase {
+    use \go1\util_dataset\generator\CoreDataGeneratorTrait;
+    
+    public function testSomeFeature() {
+        $app = $this->getApp();
+        $this->generatePortalData($app['dbs']['go1'], $app['accounts_name']);
+    }
+} 
+```

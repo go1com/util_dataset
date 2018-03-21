@@ -6,7 +6,7 @@ use Doctrine\DBAL\Connection;
 use go1\util\edge\EdgeTypes;
 use go1\util\lo\LiTypes;
 use go1\util\portal\PortalHelper;
-use go1\util\schema\mock\InstanceMockTrait;
+use go1\util\schema\mock\PortalMockTrait;
 use go1\util\schema\mock\LoMockTrait;
 use go1\util\schema\mock\UserMockTrait;
 
@@ -139,13 +139,13 @@ trait CoreDataGeneratorTrait
     {
         $api = new class
         {
-            use InstanceMockTrait;
+            use PortalMockTrait;
             use UserMockTrait;
         };
 
         # Portal › Default
         # ---------------------
-        $this->portalId = $api->createInstance($go1, [
+        $this->portalId = $api->createPortal($go1, [
             'title'      => $this->portalName,
             'status'     => $this->portalStatus,
             'is_primary' => $this->portalIsPrimary,
@@ -153,13 +153,13 @@ trait CoreDataGeneratorTrait
             'data'       => $this->portalData,
         ]);
 
-        $api->createInstancePublicKey($go1, ['instance' => $this->portalName]);
-        $api->createInstancePrivateKey($go1, ['instance' => $this->portalName]);
+        $api->createPortalPublicKey($go1, ['instance' => $this->portalName]);
+        $api->createPortalPrivateKey($go1, ['instance' => $this->portalName]);
         $this->portalRoleAdminId = $api->createPortalAdminRole($go1, ['instance' => $this->portalName]);
 
         # Portal › Content provider
         # ---------------------
-        $this->portalContentProviderId = $api->createInstance($go1, [
+        $this->portalContentProviderId = $api->createPortal($go1, [
             'title'      => $this->portalContentProviderName,
             'status'     => $this->portalContentProviderStatus,
             'is_primary' => $this->portalContentProviderIsPrimary,
@@ -167,8 +167,8 @@ trait CoreDataGeneratorTrait
             'data'       => $this->portalContentProviderData,
         ]);
 
-        $api->createInstancePublicKey($go1, ['instance' => $this->portalContentProviderName]);
-        $api->createInstancePrivateKey($go1, ['instance' => $this->portalContentProviderName]);
+        $api->createPortalPublicKey($go1, ['instance' => $this->portalContentProviderName]);
+        $api->createPortalPrivateKey($go1, ['instance' => $this->portalContentProviderName]);
         $this->portalContentProviderRoleAdminId = $api->createPortalAdminRole($go1, ['instance' => $this->portalContentProviderName]);
 
         if ($userData) {

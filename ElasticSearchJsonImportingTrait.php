@@ -9,7 +9,7 @@ use go1\util\edge\EdgeTypes;
 use go1\util\enrolment\EnrolmentStatuses;
 use go1\util\es\Schema;
 use go1\util\schema\mock\EnrolmentMockTrait;
-use go1\util\schema\mock\InstanceMockTrait;
+use go1\util\schema\mock\PortalMockTrait;
 use go1\util\schema\mock\LoMockTrait;
 use go1\util\schema\mock\UserMockTrait;
 use ONGR\ElasticsearchDSL\Query\TermLevel\TermQuery;
@@ -74,11 +74,11 @@ trait ElasticSearchJsonImportingTrait
     {
         $api = new class
         {
-            use InstanceMockTrait;
+            use PortalMockTrait;
 
             public function createPortal(Connection $db, array $options)
             {
-                return $this->createInstance($db, $options);
+                return $this->createPortal($db, $options);
             }
         };
 

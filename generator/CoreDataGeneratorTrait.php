@@ -12,6 +12,20 @@ use ReflectionProperty;
 /**
  * Core data generator.
  *
+ *
+ * Example usage:
+ * ---------------------
+ *
+ * class MyTest extends \PHPUnit\Framework\TestCase {
+ * use \go1\util_dataset\generator\CoreDataGeneratorTrait;
+ *
+ *  public function testSomeFeature() {
+ *      $this->portalName = 'WeChangeOverride.portal.name';
+ *      $app = $this->getApp();
+ *      $this->generatePortalData($app['dbs']['go1'], $app['accounts_name']);
+ *  }
+ * }
+ *
  * Portal › Default
  * ---------------------
  *

@@ -32,11 +32,11 @@ class MarketplaceDataGenerator
             use LoMockTrait;
         };
 
-        $api->createCourse($trait->go1, [
+        $trait->marketplaceCourseId = $api->createCourse($trait->go1, [
             'instance_id' => $trait->portalContentProviderId,
-            'title'       => $this->marketplaceCourseTitle,
+            'title'       => $trait->marketplaceCourseTitle,
             'marketplace' => true,
-            'status'      => $this->marketplaceCourseStatus,
+            'status'      => $trait->marketplaceCourseStatus,
         ]);
     }
 }

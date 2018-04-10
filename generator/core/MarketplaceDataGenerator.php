@@ -8,8 +8,9 @@ use go1\util_dataset\generator\CoreDataGeneratorTrait;
 class MarketplaceDataGenerator
 {
     public $marketplaceCourseId;
-    public $marketplaceCourseTitle  = 'First aid';
-    public $marketplaceCourseStatus = true;
+    public $marketplaceCourseTitle            = 'First aid';
+    public $marketplaceCourseStatus           = true;
+    public $marketplaceCourseShareWithPortals = [];
 
     /**
      * @param CoreDataGeneratorTrait $trait
@@ -38,5 +39,14 @@ class MarketplaceDataGenerator
             'marketplace' => true,
             'status'      => $trait->marketplaceCourseStatus,
         ]);
+
+        if ($trait->marketplaceCourseShareWithPortals) {
+            foreach ($trait->marketplaceCourseShareWithPortals as $sharedWithPortalName) {
+                $trait->go1->insert('gc_lo_group', [
+                    'lo_id'       => $trait->marketplaceCourseId,
+                    'instance_id' => $trait->go1->fetchColumn('SELECT id FROM gc_instance WHERE title = ?', [$sharedWithPortalName]),
+                ]);
+            }
+        }
     }
 }

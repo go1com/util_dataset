@@ -125,6 +125,30 @@ use ReflectionProperty;
  * @property $userLearner2LastName                     string
  * @property $userLearner2JWT                          string
  *
+ * # Content provider portal › admin
+ * # ---------------------
+ * @property $cpUserAdminUuid                          string
+ * @property $cpUserAdminId                            int
+ * @property $cpUserAdminProfileId                     int
+ * @property $cpUserAdminAccountId                     int
+ * @property $cpUserAdminMail                          string
+ * @property $cpUserAdminFirstName                     string
+ * @property $cpUserAdminLastName                      string
+ * @property $cpUserAdminJwt                           string
+ *
+ * # Content provider portal › user
+ * # ---------------------
+ * @property $cpUserLearner1Uuid                       string
+ * @property $cpUserLearner1Id                         int
+ * @property $cpUserLearner1ProfileId                  int
+ * @property $cpUserLearner1AccountId                  int
+ * @property $cpUserLearner1Mail                       string
+ * @property $cpUserLearner1FirstName                  string
+ * @property $cpUserLearner1LastName                   string
+ * @property $cpUserLearner1JWT                        string
+ *
+ * # Learning objects.
+ * # ---------------------
  * @property $courseWebId
  * @property $courseWebTitle                           string
  * @property $courseWebPublished                       bool

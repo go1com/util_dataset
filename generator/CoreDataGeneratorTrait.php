@@ -4,6 +4,7 @@ namespace go1\util_dataset\generator;
 
 use Doctrine\DBAL\Connection;
 use go1\util_dataset\generator\core\LoDataGenerator;
+use go1\util_dataset\generator\core\MarketplaceDataGenerator;
 use go1\util_dataset\generator\core\PortalDataGenerator;
 use go1\util_dataset\generator\core\UserDataGenerator;
 use ReflectionObject;
@@ -129,20 +130,26 @@ use ReflectionProperty;
  * @property $courseWebPublished                       bool
  * @property $courseWebMarketplace                     bool
  * @property $courseWebAuthorMail                      string
- * @property $eventUnderstandWebIn4HoursLiId
- * @property $eventUnderstandWebIn4HoursId
- * @property $eventUnderstandWebIn4HoursTitle          = 'Understand WEB in 4 hours'
- * @property $eventUnderstandWebIn4HoursAvailableSeats = 20
- * @property $eventWeb4EveryOneLiId
- * @property $eventWeb4EveryOneId
- * @property $eventWeb4EveryOneTitle                   = '[MEET-UP] Web for everyone'
- * @property $eventWeb4EveryOneAvailableSeats          = -1
- * @property $module1Id
- * @property $moduleTitle                              = 'Basics of HTML'
- * @property $moduleHtmlId
- * @property $moduleHtmlTitle                          = 'Basics of HTML'
- * @property $moduleCssId
- * @property $moduleCssTitle                           = 'Introduction to CSS'
+ * @property $eventUnderstandWebIn4HoursLiId           int
+ * @property $eventUnderstandWebIn4HoursId             int
+ * @property $eventUnderstandWebIn4HoursTitle          string
+ * @property $eventUnderstandWebIn4HoursAvailableSeats int
+ * @property $eventWeb4EveryOneLiId                    int
+ * @property $eventWeb4EveryOneId                      int
+ * @property $eventWeb4EveryOneTitle                   string
+ * @property $eventWeb4EveryOneAvailableSeats          int
+ * @property $module1Id                                int
+ * @property $moduleTitle                              string
+ * @property $moduleHtmlId                             int
+ * @property $moduleHtmlTitle                          string
+ * @property $moduleCssId                              id
+ * @property $moduleCssTitle                           string
+ *
+ * # Marketplace content
+ * # ---------------------
+ * @property $marketplaceCourseId                      int
+ * @property $marketplaceCourseTitle                   string
+ * @property $marketplaceCourseStatus                  bool
  */
 trait CoreDataGeneratorTrait
 {
@@ -179,7 +186,9 @@ trait CoreDataGeneratorTrait
                         ->generate(
                             $this,
                             !$learningData ? null : function () {
-                                (new LoDataGenerator)->generate($this);
+                                (new LoDataGenerator)->generate($this, function () {
+                                    (new MarketplaceDataGenerator)->generate($this, null);
+                                });
                             }
                         );
                 }

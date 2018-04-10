@@ -40,14 +40,15 @@ class PortalDataGenerator
     public function generate(&$trait, callable $callback = null)
     {
         $trait::cloneProperties($this, $trait);
-        $this->doGenerate($trait);
+        $this->doGenerateDefaultPortal($trait);
+        $this->doGenerateContentProviderPortal($trait);
         $callback && call_user_func($callback);
     }
 
     /**
      * @param CoreDataGeneratorTrait $trait
      */
-    private function doGenerate($trait)
+    private function doGenerateDefaultPortal($trait)
     {
         $api = new class
         {
@@ -55,8 +56,6 @@ class PortalDataGenerator
             use UserMockTrait;
         };
 
-        # Portal › Default
-        # ---------------------
         $trait->portalId = $api->createPortal($trait->go1, [
             'title'      => $trait->portalName,
             'status'     => $trait->portalStatus,
@@ -68,9 +67,19 @@ class PortalDataGenerator
         $api->createPortalPublicKey($trait->go1, ['instance' => $this->portalName]);
         $api->createPortalPrivateKey($trait->go1, ['instance' => $this->portalName]);
         $trait->portalRoleAdminId = $api->createPortalAdminRole($trait->go1, ['instance' => $this->portalName]);
+    }
 
-        # Portal › Content provider
-        # ---------------------
+    /**
+     * @param CoreDataGeneratorTrait $trait
+     */
+    private function doGenerateContentProviderPortal($trait)
+    {
+        $api = new class
+        {
+            use PortalMockTrait;
+            use UserMockTrait;
+        };
+
         $trait->portalContentProviderId = $api->createPortal($trait->go1, [
             'title'      => $trait->portalContentProviderName,
             'status'     => $trait->portalContentProviderStatus,

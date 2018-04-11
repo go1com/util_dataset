@@ -174,6 +174,7 @@ use ReflectionProperty;
  * @property $marketplaceCourseId                      int
  * @property $marketplaceCourseTitle                   string
  * @property $marketplaceCourseStatus                  bool
+ * @property $marketplaceCourseMarketplace             bool
  * @property $marketplaceCourseShareWithPortals        string[]
  */
 trait CoreDataGeneratorTrait

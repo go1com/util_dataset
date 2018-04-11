@@ -10,6 +10,7 @@ class MarketplaceDataGenerator
     public $marketplaceCourseId;
     public $marketplaceCourseTitle            = 'First aid';
     public $marketplaceCourseStatus           = true;
+    public $marketplaceCourseMarketplace      = true;
     public $marketplaceCourseShareWithPortals = [];
 
     /**
@@ -36,7 +37,7 @@ class MarketplaceDataGenerator
         $trait->marketplaceCourseId = $api->createCourse($trait->go1, [
             'instance_id' => $trait->portalContentProviderId,
             'title'       => $trait->marketplaceCourseTitle,
-            'marketplace' => true,
+            'marketplace' => $trait->marketplaceCourseMarketplace,
             'status'      => $trait->marketplaceCourseStatus,
         ]);
 

@@ -85,9 +85,9 @@ class UserDataGenerator
     public $cpUserAdminId;
     public $cpUserAdminProfileId = 112211;
     public $cpUserAdminAccountId;
-    public $cpUserAdminMail      = 'minh.h@qa.com';
-    public $cpUserAdminFirstName = 'Minh';
-    public $cpUserAdminLastName  = 'Ho';
+    public $cpUserAdminMail      = 'quang.t@qa.com';
+    public $cpUserAdminFirstName = 'Quang';
+    public $cpUserAdminLastName  = 'To';
     public $cpUserAdminJwt;
 
     # Content provider portal › user
@@ -96,9 +96,9 @@ class UserDataGenerator
     public $cpUserLearner1Id;
     public $cpUserLearner1ProfileId = 7799;
     public $cpUserLearner1AccountId;
-    public $cpUserLearner1Mail      = 'giap.vo@qa.com';
-    public $cpUserLearner1FirstName = 'Giap';
-    public $cpUserLearner1LastName  = 'Vo';
+    public $cpUserLearner1Mail      = 'vi.mac@qa.com';
+    public $cpUserLearner1FirstName = 'Vi';
+    public $cpUserLearner1LastName  = 'Mac';
     public $cpUserLearner1JWT;
 
     /**
@@ -262,7 +262,7 @@ class UserDataGenerator
                 'first_name' => $trait->cpUserLearner1FirstName,
                 'last_name'  => $trait->cpUserLearner1LastName,
             ]),
-            $trait->userLearner1AccountId = $api->createUser($trait->go1, [
+            $trait->cpUserLearner1AccountId = $api->createUser($trait->go1, [
                 'instance'   => $trait->portalContentProviderName,
                 'mail'       => $trait->cpUserLearner1Mail,
                 'profile_id' => $trait->cpUserLearner1ProfileId + 10000,

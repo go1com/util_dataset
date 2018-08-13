@@ -39,6 +39,7 @@ use ReflectionProperty;
  * @property $portalPrivateKey                         string
  * @property $portalData
  * @property $portalRoleAdminId                        int
+ * @property $portalRoleManagerId                      int
  *
  * Portal › Content provider
  * ---------------------
@@ -52,6 +53,7 @@ use ReflectionProperty;
  * @property $portalContentProviderPrivateKey          string
  * @property $portalContentProviderData
  * @property $portalContentProviderRoleAdminId         int
+ * @property $portalContentProviderRoleManagerId       int
  *
  *
  * # User › Portal admin
@@ -69,10 +71,12 @@ use ReflectionProperty;
  * # ---------------------
  * @property $userManagerUuid                          string
  * @property $userManagerId                            int
+ * @property $userManagerProfileId                     int
  * @property $userManagerAccountId                     int
  * @property $userManagerMail                          string
  * @property $userManagerFirstName                     string
  * @property $userManagerLastName                      string
+ * @property $userManagerJwt                           string
  *
  * # User › Course author
  * # ---------------------

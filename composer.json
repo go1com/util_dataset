@@ -10,6 +10,7 @@
   "require": {
     "php": "^7.1",
     "go1/util": "dev-master",
+    "go1/util_core": "dev-master",
     "go1/util_es": "dev-master"
   }
 }

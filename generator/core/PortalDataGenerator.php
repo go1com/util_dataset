@@ -20,6 +20,7 @@ class PortalDataGenerator
     public $portalPrivateKey = 'c37cfacc-023c-4e98-a33e-d147b714c1a4';
     public $portalData       = [];
     public $portalRoleAdminId;
+    public $portalRoleManagerId;
 
     # Portal › Content provider
     # ---------------------
@@ -32,6 +33,7 @@ class PortalDataGenerator
     public $portalContentProviderPrivateKey = 'da0c1f05-99ff-452d-99b9-c98f1a934b85';
     public $portalContentProviderData       = [];
     public $portalContentProviderRoleAdminId;
+    public $portalContentProviderRoleManagerId;
 
     /**
      * @param CoreDataGeneratorTrait $trait
@@ -67,6 +69,7 @@ class PortalDataGenerator
         $api->createPortalPublicKey($trait->go1, ['instance' => $this->portalName]);
         $api->createPortalPrivateKey($trait->go1, ['instance' => $this->portalName]);
         $trait->portalRoleAdminId = $api->createPortalAdminRole($trait->go1, ['instance' => $this->portalName]);
+        $trait->portalRoleManagerId = $api->createPortalManagerRole($trait->go1, ['instance' => $this->portalName]);
     }
 
     /**
@@ -91,5 +94,6 @@ class PortalDataGenerator
         $api->createPortalPublicKey($trait->go1, ['instance' => $trait->portalContentProviderName]);
         $api->createPortalPrivateKey($trait->go1, ['instance' => $trait->portalContentProviderName]);
         $trait->portalContentProviderRoleAdminId = $api->createPortalAdminRole($trait->go1, ['instance' => $trait->portalContentProviderName]);
+        $trait->portalContentProviderRoleManagerId = $api->createPortalManagerRole($trait->go1, ['instance' => $trait->portalContentProviderName]);
     }
 }

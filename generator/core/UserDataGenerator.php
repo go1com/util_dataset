@@ -23,10 +23,12 @@ class UserDataGenerator
     # ---------------------
     public $userManagerUuid      = 'fbe840af-123a-4136-9c79-2bdd86c19748';
     public $userManagerId;
+    public $userManagerProfileId = 119913;
     public $userManagerAccountId;
     public $userManagerMail      = 'kien.nguyen@qa.com';
     public $userManagerFirstName = 'Kien';
     public $userManagerLastName  = 'Nguyen';
+    public $userManagerJwt;
 
     # User › Course author
     # ---------------------
@@ -145,6 +147,28 @@ class UserDataGenerator
         $api->link($trait->go1, EdgeTypes::HAS_ROLE, $trait->userAdminAccountId, $trait->portalRoleAdminId);
         $trait->userAdminJwt = $api->jwtForUser($trait->go1, $trait->userAdminId, $trait->portalName);
 
+        # User › Manager
+        # ---------------------
+        $trait->userManagerId = $api->createUser($trait->go1, [
+            'instance'   => $trait->accountsName,
+            'uuid'       => $trait->userManagerUuid,
+            'profile_id' => $trait->userManagerProfileId,
+            'mail'       => $trait->userManagerMail,
+            'first_name' => $trait->userManagerFirstName,
+            'last_name'  => $trait->userManagerLastName,
+        ]);
+
+        $trait->userManagerAccountId = $api->createUser($trait->go1, [
+            'instance'   => $trait->portalName,
+            'mail'       => $trait->userManagerMail,
+            'first_name' => $trait->userManagerFirstName,
+            'last_name'  => $trait->userManagerLastName,
+        ]);
+
+        $api->link($trait->go1, EdgeTypes::HAS_ACCOUNT, $trait->userManagerId, $trait->userManagerAccountId);
+        $api->link($trait->go1, EdgeTypes::HAS_ROLE, $trait->userManagerAccountId, $trait->portalRoleManagerId);
+        $trait->userManagerJwt = $api->jwtForUser($trait->go1, $trait->userManagerId, $trait->portalName);
+
         # User › Course author
         # ---------------------
         $api->link(
@@ -190,6 +214,7 @@ class UserDataGenerator
             ])
         );
         $trait->userLearner1JWT = $api->jwtForUser($trait->go1, $trait->userLearner1Id, $trait->portalName);
+        $api->link($trait->go1, EdgeTypes::HAS_MANAGER, $trait->userLearner1AccountId, $trait->userManagerId);
 
         # User › Learner 2
         # ---------------------

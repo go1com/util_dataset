@@ -172,6 +172,24 @@ use ReflectionProperty;
  * @property $moduleHtmlTitle                          string
  * @property $moduleCssId                              id
  * @property $moduleCssTitle                           string
+ * @property $liIntroductionToTagsId                   int
+ * @property $liIntroductionToElementsId               int
+ * @property $liIntroductionToAttributesId             int
+ * @property $liSelectorsAndVisualRulesId              int
+ * @property $liTheBoxModelId                          int
+ * @property $liDisplayAndPositioningId                int
+ * @property $liColorsId                               int
+ * @property $liTypographyId                           int
+ * @property $liGridId                                 int
+ * @property $liIntroductionToTagsTitle                string
+ * @property $liIntroductionToElementsTitle            string
+ * @property $liIntroductionToAttributesTitle          string
+ * @property $liSelectorsAndVisualRulesTitle           string
+ * @property $liTheBoxModelTitle                       string
+ * @property $liDisplayAndPositioningTitle             string
+ * @property $liColorsTitle                            string
+ * @property $liTypographyTitle                        string
+ * @property $liGridTitle                              string
  *
  * # Marketplace content
  * # ---------------------

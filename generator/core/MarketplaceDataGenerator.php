@@ -5,7 +5,7 @@ namespace go1\util_dataset\generator\core;
 use go1\util\schema\mock\LoMockTrait;
 use go1\util_dataset\generator\CoreDataGeneratorTrait;
 
-class MarketplaceDataGenerator
+class MarketplaceDataGenerator implements DataGeneratorInterface
 {
     public $marketplaceCourseId;
     public $marketplaceCourseTitle            = 'First aid';

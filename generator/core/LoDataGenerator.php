@@ -8,7 +8,7 @@ use go1\util\schema\mock\LoMockTrait;
 use go1\util\schema\mock\UserMockTrait;
 use go1\util_dataset\generator\CoreDataGeneratorTrait;
 
-class LoDataGenerator
+class LoDataGenerator implements DataGeneratorInterface
 {
     # Course: Making web 101
     #   Event:

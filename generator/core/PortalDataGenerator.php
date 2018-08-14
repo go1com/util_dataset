@@ -7,7 +7,7 @@ use go1\util\schema\mock\PortalMockTrait;
 use go1\util\schema\mock\UserMockTrait;
 use go1\util_dataset\generator\CoreDataGeneratorTrait;
 
-class PortalDataGenerator
+class PortalDataGenerator implements DataGeneratorInterface
 {
     # Portal › Default
     # ---------------------

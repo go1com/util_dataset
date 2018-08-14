@@ -3,6 +3,8 @@
 namespace go1\util_dataset\generator;
 
 use Doctrine\DBAL\Connection;
+use go1\util_dataset\generator\core\DataGeneratorInterface;
+use go1\util_dataset\generator\core\EnrolmentDataGenerator;
 use go1\util_dataset\generator\core\LoDataGenerator;
 use go1\util_dataset\generator\core\MarketplaceDataGenerator;
 use go1\util_dataset\generator\core\PortalDataGenerator;
@@ -198,6 +200,13 @@ use ReflectionProperty;
  * @property $marketplaceCourseStatus                  bool
  * @property $marketplaceCourseMarketplace             bool
  * @property $marketplaceCourseShareWithPortals        string[]
+ *
+ * # Enrolment
+ * # ---------------------
+ * @property int $learner1CourseWebEnrolmentId
+ * @property int $learner1CourseWebRevisionEnrolmentId
+ * @property int $learner1ModuleCssEnrolmentId
+ * @property int $learner1ModuleCssRevisionEnrolmentId
  */
 trait CoreDataGeneratorTrait
 {
@@ -220,26 +229,37 @@ trait CoreDataGeneratorTrait
     protected function generatePortalData(
         Connection $go1,
         string $accountsName,
-        bool $userData = true,
-        bool $learningData = true)
+        array $flags = [])
     {
         $this->go1 = $go1;
         $this->accountsName = $accountsName;
 
-        (new PortalDataGenerator)
-            ->generate(
-                $this,
-                !$userData ? null : function () use ($learningData) {
-                    (new UserDataGenerator)
-                        ->generate(
-                            $this,
-                            !$learningData ? null : function () {
-                                (new LoDataGenerator)->generate($this, function () {
-                                    (new MarketplaceDataGenerator)->generate($this, null);
-                                });
-                            }
-                        );
-                }
-            );
+        $generators = [
+            [PortalDataGenerator::class, $flags['portal'] ?? true],
+            [UserDataGenerator::class, $flags['user'] ?? true],
+            [LoDataGenerator::class, $flags['lo'] ?? true],
+            [MarketplaceDataGenerator::class, $flags['marketplace'] ?? true],
+            [EnrolmentDataGenerator::class, $flags['enrolment'] ?? true],
+        ];
+        $this->generate($generators);
+    }
+
+    private function generate(array $generators, int $index = 0)
+    {
+        if (isset($generators[$index])) {
+            $generator = new $generators[$index][0];
+            if ($generator instanceof DataGeneratorInterface) {
+                $generator
+                    ->generate(
+                        $this,
+                        empty($generators[$index][1]) ? null : function () use ($generators, $index) {
+                            $index++;
+                            $this->generate($generators, $index);
+                        }
+                    );
+            } else {
+                throw new \Exception(sprintf('Generator %s should implement interface %s', $generators[$index], DataGeneratorInterface::class));
+            }
+        }
     }
 }

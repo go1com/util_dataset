@@ -29,15 +29,15 @@ class EnrolmentDataGenerator implements DataGeneratorInterface
         };
 
         $trait->learner1CourseWebEnrolmentId = $api->createEnrolment($trait->go1, [
-            'taken_instance_id'   => $trait->portalId,
-            'lo_id'               => $trait->courseWebId,
-            'profile_id'          => $trait->userLearner1ProfileId,
+            'taken_instance_id' => $trait->portalId,
+            'lo_id'             => $trait->courseWebId,
+            'profile_id'        => $trait->userLearner1ProfileId,
         ]);
         $trait->learner1CourseWebRevisionEnrolmentId = $api->createRevisionEnrolment($trait->go1, [
-            'enrolment_id'        => $trait->learner1CourseWebEnrolmentId,
-            'profile_id'          => $trait->userLearner1ProfileId,
-            'lo_id'               => $trait->courseWebId,
-            'taken_instance_id'   => $trait->portalId,
+            'enrolment_id'      => $trait->learner1CourseWebEnrolmentId,
+            'profile_id'        => $trait->userLearner1ProfileId,
+            'lo_id'             => $trait->courseWebId,
+            'taken_instance_id' => $trait->portalId,
         ]);
         $trait->learner1ModuleCssEnrolmentId = $api->createEnrolment($trait->go1, [
             'taken_instance_id'   => $trait->portalId,
@@ -47,10 +47,10 @@ class EnrolmentDataGenerator implements DataGeneratorInterface
             'parent_enrolment_id' => $trait->learner1CourseWebEnrolmentId,
         ]);
         $trait->learner1ModuleCssRevisionEnrolmentId = $api->createRevisionEnrolment($trait->go1, [
-            'enrolment_id'        => $trait->learner1ModuleCssEnrolmentId,
-            'profile_id'          => $trait->userLearner1ProfileId,
-            'lo_id'               => $trait->moduleCssId,
-            'taken_instance_id'   => $trait->portalId,
+            'enrolment_id'      => $trait->learner1ModuleCssEnrolmentId,
+            'profile_id'        => $trait->userLearner1ProfileId,
+            'lo_id'             => $trait->moduleCssId,
+            'taken_instance_id' => $trait->portalId,
         ]);
     }
 }

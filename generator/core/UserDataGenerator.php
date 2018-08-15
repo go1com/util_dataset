@@ -139,6 +139,7 @@ class UserDataGenerator implements DataGeneratorInterface
         $trait->userAdminAccountId = $api->createUser($trait->go1, [
             'instance'   => $trait->portalName,
             'mail'       => $trait->userAdminMail,
+            'profile_id' => $trait->userAdminProfileId + 10000,
             'first_name' => $trait->userAdminFirstName,
             'last_name'  => $trait->userAdminLastName,
         ]);
@@ -161,6 +162,7 @@ class UserDataGenerator implements DataGeneratorInterface
         $trait->userManagerAccountId = $api->createUser($trait->go1, [
             'instance'   => $trait->portalName,
             'mail'       => $trait->userManagerMail,
+            'profile_id' => $trait->userManagerProfileId + 10000,
             'first_name' => $trait->userManagerFirstName,
             'last_name'  => $trait->userManagerLastName,
         ]);
@@ -185,6 +187,7 @@ class UserDataGenerator implements DataGeneratorInterface
             $trait->userCourseAuthorAccountId = $api->createUser($trait->go1, [
                 'instance'   => $trait->portalName,
                 'mail'       => $trait->userCourseAuthorMail,
+                'profile_id' => $trait->userCourseAuthorProfileId + 10000,
                 'first_name' => $trait->userCourseAuthorFirstName,
                 'last_name'  => $trait->userCourseAuthorLastName,
             ])
@@ -225,7 +228,7 @@ class UserDataGenerator implements DataGeneratorInterface
                 'instance'   => $trait->accountsName,
                 'uuid'       => $trait->userLearner2Uuid,
                 'mail'       => $trait->userLearner2Mail,
-                'profile_id' => $trait->userLearner2ProfileId + 10000,
+                'profile_id' => $trait->userLearner2ProfileId,
                 'first_name' => $trait->userLearner2FirstName,
                 'last_name'  => $trait->userLearner2LastName,
             ]),

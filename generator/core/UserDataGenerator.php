@@ -6,7 +6,7 @@ use go1\util\edge\EdgeTypes;
 use go1\util\schema\mock\UserMockTrait;
 use go1\util_dataset\generator\CoreDataGeneratorTrait;
 
-class UserDataGenerator
+class UserDataGenerator implements DataGeneratorInterface
 {
     # User › Portal admin
     # ---------------------

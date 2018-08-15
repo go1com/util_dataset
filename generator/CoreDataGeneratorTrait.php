@@ -114,7 +114,7 @@ use ReflectionProperty;
  * # User › Learner 1
  * # ---------------------
  * @property     $userLearner1Uuid                         string
- * @property     $                          int
+ * @property     $userLearner1Id                           int
  * @property     $userLearner1ProfileId                    int
  * @property     $userLearner1AccountId                    int
  * @property     $userLearner1Mail                         string

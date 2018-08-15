@@ -43,6 +43,7 @@ use ReflectionProperty;
  * @property     $portalData
  * @property     $portalRoleAdminId                        int
  * @property     $portalRoleManagerId                      int
+ * @property     $portalGroupId                            int
  *
  * Portal › Content provider
  * ---------------------
@@ -213,6 +214,7 @@ trait CoreDataGeneratorTrait
 {
     /** @var Connection */
     public $go1;
+    public $social;
 
     /** @var string */
     public $accountsName;
@@ -229,10 +231,12 @@ trait CoreDataGeneratorTrait
 
     protected function generatePortalData(
         Connection $go1,
+        Connection $social,
         string $accountsName,
         array $flags = [])
     {
         $this->go1 = $go1;
+        $this->social = $social;
         $this->accountsName = $accountsName;
         $this->generate([
             [PortalDataGenerator::class, $flags['portal'] ?? true],

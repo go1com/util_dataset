@@ -3,6 +3,7 @@
 namespace go1\util_dataset\generator\core;
 
 use go1\util\portal\PortalHelper;
+use go1\util\schema\mock\GroupMockTrait;
 use go1\util\schema\mock\PortalMockTrait;
 use go1\util\schema\mock\UserMockTrait;
 use go1\util_dataset\generator\CoreDataGeneratorTrait;
@@ -21,6 +22,9 @@ class PortalDataGenerator implements DataGeneratorInterface
     public $portalData       = [];
     public $portalRoleAdminId;
     public $portalRoleManagerId;
+    public $userLearner1Id;
+    public $portalGroupId;
+    public $userLearner1AccountId;
 
     # Portal › Content provider
     # ---------------------
@@ -56,6 +60,7 @@ class PortalDataGenerator implements DataGeneratorInterface
         {
             use PortalMockTrait;
             use UserMockTrait;
+            use GroupMockTrait;
         };
 
         $trait->portalId = $api->createPortal($trait->go1, [
@@ -70,6 +75,9 @@ class PortalDataGenerator implements DataGeneratorInterface
         $api->createPortalPrivateKey($trait->go1, ['instance' => $this->portalName]);
         $trait->portalRoleAdminId = $api->createPortalAdminRole($trait->go1, ['instance' => $this->portalName]);
         $trait->portalRoleManagerId = $api->createPortalManagerRole($trait->go1, ['instance' => $this->portalName]);
+        $trait->portalGroupId = $api->createGroup($trait->social, ['title' => 'group 1', 'user_id' => $this->userLearner1Id, 'instance_id' => $this->portalId]);
+        $api->createGroupItem($trait->social, ['entity_id' => $this->userLearner1AccountId]);
+
     }
 
     /**

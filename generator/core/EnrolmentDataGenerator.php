@@ -2,7 +2,9 @@
 
 namespace go1\util_dataset\generator\core;
 
+use go1\reducer\v1\constants\EdgeTypes;
 use go1\util\schema\mock\EnrolmentMockTrait;
+use go1\util\schema\mock\UserMockTrait;
 use go1\util_dataset\generator\CoreDataGeneratorTrait;
 
 class EnrolmentDataGenerator implements DataGeneratorInterface
@@ -26,6 +28,7 @@ class EnrolmentDataGenerator implements DataGeneratorInterface
         $api = new class
         {
             use EnrolmentMockTrait;
+            use UserMockTrait;
         };
 
         $trait->learner1CourseWebEnrolmentId = $api->createEnrolment($trait->go1, [
@@ -52,5 +55,7 @@ class EnrolmentDataGenerator implements DataGeneratorInterface
             'lo_id'             => $trait->moduleCssId,
             'taken_instance_id' => $trait->portalId,
         ]);
+
+        $api->link($trait->go1, EdgeTypes::HAS_TUTOR_ENROLMENT_EDGE, $trait->userEnrolmentAssessorId, $trait->learner1CourseWebEnrolmentId);
     }
 }

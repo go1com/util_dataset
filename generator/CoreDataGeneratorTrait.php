@@ -98,6 +98,7 @@ use ReflectionProperty;
  * @property     $userCourseAssessorId                     int
  * @property     $userCourseAssessorAccountId              int
  * @property     $userCourseAssessorMail                   string
+ * @property     $userCourseAssessorProfileId              int
  * @property     $userCourseAssessorFirstName              string
  * @property     $userCourseAssessorLastName               string
  *
@@ -107,6 +108,7 @@ use ReflectionProperty;
  * @property     $userEnrolmentAssessorId                  int
  * @property     $userEnrolmentAssessorAccountId           int
  * @property     $userEnrolmentAssessorMail                string
+ * @property     $userEnrolmentAssessorProfileId           int
  * @property     $userEnrolmentAssessorFirstName           string
  * @property     $userEnrolmentAssessorLastName            string
  *

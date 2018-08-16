@@ -47,6 +47,7 @@ class UserDataGenerator implements DataGeneratorInterface
     public $userCourseAssessorId;
     public $userCourseAssessorAccountId;
     public $userCourseAssessorMail      = 'si.nguyen@qa.com';
+    public $userCourseAssessorProfileId = 19901;
     public $userCourseAssessorFirstName = 'Si';
     public $userCourseAssessorLastName  = 'Nguyen';
 
@@ -55,6 +56,7 @@ class UserDataGenerator implements DataGeneratorInterface
     public $userEnrolmentAssessorUuid      = '903d044e-8945-4115-ae36-526452501c15';
     public $userEnrolmentAssessorId;
     public $userEnrolmentAssessorAccountId;
+    public $userEnrolmentAssessorProfileId = 19952;
     public $userEnrolmentAssessorMail      = 'thu.le@qa.com';
     public $userEnrolmentAssessorFirstName = 'Thu';
     public $userEnrolmentAssessorLastName  = 'Le';
@@ -190,6 +192,54 @@ class UserDataGenerator implements DataGeneratorInterface
                 'profile_id' => $trait->userCourseAuthorProfileId + 10000,
                 'first_name' => $trait->userCourseAuthorFirstName,
                 'last_name'  => $trait->userCourseAuthorLastName,
+            ])
+        );
+
+        $trait->userCourseAuthorJwt = $api->jwtForUser($trait->go1, $trait->userCourseAuthorId, $trait->portalName);
+
+        # User › Course assessor
+        # ---------------------
+        $api->link(
+            $trait->go1,
+            EdgeTypes::HAS_ACCOUNT,
+            $trait->userCourseAssessorId = $api->createUser($trait->go1, [
+                'instance'   => $trait->accountsName,
+                'uuid'       => $trait->userCourseAssessorUuid,
+                'mail'       => $trait->userCourseAssessorMail,
+                'profile_id' => $trait->userCourseAssessorProfileId,
+                'first_name' => $trait->userCourseAssessorFirstName,
+                'last_name'  => $trait->userCourseAssessorLastName,
+            ]),
+            $trait->userCourseAssessorAccountId = $api->createUser($trait->go1, [
+                'instance'   => $trait->portalName,
+                'mail'       => $trait->userCourseAssessorMail,
+                'profile_id' => $trait->userCourseAssessorProfileId + 10000,
+                'first_name' => $trait->userCourseAssessorFirstName,
+                'last_name'  => $trait->userCourseAssessorLastName,
+            ])
+        );
+
+        $trait->userCourseAuthorJwt = $api->jwtForUser($trait->go1, $trait->userCourseAuthorId, $trait->portalName);
+
+        # User › Enrolment assessor
+        # ---------------------
+        $api->link(
+            $trait->go1,
+            EdgeTypes::HAS_ACCOUNT,
+            $trait->userEnrolmentAssessorId = $api->createUser($trait->go1, [
+                'instance'   => $trait->accountsName,
+                'uuid'       => $trait->userEnrolmentAssessorUuid,
+                'mail'       => $trait->userEnrolmentAssessorMail,
+                'profile_id' => $trait->userEnrolmentAssessorProfileId,
+                'first_name' => $trait->userEnrolmentAssessorFirstName,
+                'last_name'  => $trait->userEnrolmentAssessorLastName,
+            ]),
+            $trait->userEnrolmentAssessorAccountId = $api->createUser($trait->go1, [
+                'instance'   => $trait->portalName,
+                'mail'       => $trait->userEnrolmentAssessorMail,
+                'profile_id' => $trait->userEnrolmentAssessorProfileId + 10000,
+                'first_name' => $trait->userEnrolmentAssessorFirstName,
+                'last_name'  => $trait->userEnrolmentAssessorLastName,
             ])
         );
 

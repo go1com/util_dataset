@@ -2,7 +2,7 @@
 
 namespace go1\util_dataset\generator\core;
 
-use go1\reducer\v1\constants\EdgeTypes;
+use go1\util\edge\EdgeTypes;
 use go1\util\schema\mock\EnrolmentMockTrait;
 use go1\util\schema\mock\UserMockTrait;
 use go1\util_dataset\generator\CoreDataGeneratorTrait;

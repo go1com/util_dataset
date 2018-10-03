@@ -55,15 +55,15 @@ class LoDataGenerator implements DataGeneratorInterface
     public $liColorsId;
     public $liTypographyId;
     public $liGridId;
-    public $liIntroductionToTagsTitle                 = 'Introduction to Tags';
-    public $liIntroductionToElementsTitle             = 'Introduction to Elements';
-    public $liIntroductionToAttributesTitle           = 'Introduction to Attributes';
-    public $liSelectorsAndVisualRulesTitle            = 'Selectors and Visual Rules';
-    public $liTheBoxModelTitle                        = 'The Box Model';
-    public $liDisplayAndPositioningTitle              = 'Display and Positioning';
-    public $liColorsTitle                             = 'Colors';
-    public $liTypographyTitle                         = 'Typography';
-    public $liGridTitle                               = 'Grid';
+    public $liIntroductionToTagsTitle                = 'Introduction to Tags';
+    public $liIntroductionToElementsTitle            = 'Introduction to Elements';
+    public $liIntroductionToAttributesTitle          = 'Introduction to Attributes';
+    public $liSelectorsAndVisualRulesTitle           = 'Selectors and Visual Rules';
+    public $liTheBoxModelTitle                       = 'The Box Model';
+    public $liDisplayAndPositioningTitle             = 'Display and Positioning';
+    public $liColorsTitle                            = 'Colors';
+    public $liTypographyTitle                        = 'Typography';
+    public $liGridTitle                              = 'Grid';
 
     /**
      * @param CoreDataGeneratorTrait $trait
@@ -176,6 +176,7 @@ class LoDataGenerator implements DataGeneratorInterface
 
         $api->link($trait->go1, EdgeTypes::HAS_MODULE, $trait->courseWebId, $trait->moduleHtmlId);
         $api->link($trait->go1, EdgeTypes::HAS_MODULE, $trait->courseWebId, $trait->moduleCssId);
+        $api->link($trait->go1, EdgeTypes::HAS_LI, $trait->courseWebId, $trait->eventUnderstandWebIn4HoursLiId);
         $api->link($trait->go1, EdgeTypes::HAS_LI, $trait->moduleHtmlId, $trait->liIntroductionToTagsId);
         $api->link($trait->go1, EdgeTypes::HAS_LI, $trait->moduleHtmlId, $trait->liIntroductionToElementsId);
         $api->link($trait->go1, EdgeTypes::HAS_ELECTIVE_LI, $trait->moduleHtmlId, $trait->liIntroductionToAttributesId);

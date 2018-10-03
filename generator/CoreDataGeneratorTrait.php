@@ -229,10 +229,7 @@ trait CoreDataGeneratorTrait
         }
     }
 
-    protected function generatePortalData(
-        Connection $go1,
-        string $accountsName,
-        array $flags = [])
+    protected function generatePortalData(Connection $go1, string $accountsName, array $flags = [])
     {
         $this->go1 = $go1;
         $this->accountsName = $accountsName;

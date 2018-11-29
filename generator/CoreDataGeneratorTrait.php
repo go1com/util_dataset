@@ -248,6 +248,11 @@ trait CoreDataGeneratorTrait
             return;
         }
 
+        # Skip if generator is disabled.
+        if ($generators[$index][1] == false) {
+            return;
+        }
+
         $generator = new $generators[$index][0];
         if (!$generator instanceof DataGeneratorInterface) {
             $msg = sprintf('Generator %s should implement interface %s.', $generators[$index], DataGeneratorInterface::class);

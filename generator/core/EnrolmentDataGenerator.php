@@ -35,10 +35,12 @@ class EnrolmentDataGenerator implements DataGeneratorInterface
             'taken_instance_id' => $trait->portalId,
             'lo_id'             => $trait->courseWebId,
             'profile_id'        => $trait->userLearner1ProfileId,
+            'user_id'           => $trait->userLearner1Id,
         ]);
         $trait->learner1CourseWebRevisionEnrolmentId = $api->createRevisionEnrolment($trait->go1, [
             'enrolment_id'      => $trait->learner1CourseWebEnrolmentId,
             'profile_id'        => $trait->userLearner1ProfileId,
+            'user_id'           => $trait->userLearner1Id,
             'lo_id'             => $trait->courseWebId,
             'taken_instance_id' => $trait->portalId,
         ]);
@@ -47,11 +49,13 @@ class EnrolmentDataGenerator implements DataGeneratorInterface
             'lo_id'               => $trait->moduleCssId,
             'parent_lo_id'        => $trait->courseWebId,
             'profile_id'          => $trait->userLearner1ProfileId,
+            'user_id'             => $trait->userLearner1Id,
             'parent_enrolment_id' => $trait->learner1CourseWebEnrolmentId,
         ]);
         $trait->learner1ModuleCssRevisionEnrolmentId = $api->createRevisionEnrolment($trait->go1, [
             'enrolment_id'      => $trait->learner1ModuleCssEnrolmentId,
             'profile_id'        => $trait->userLearner1ProfileId,
+            'user_id'           => $trait->userLearner1Id,
             'lo_id'             => $trait->moduleCssId,
             'taken_instance_id' => $trait->portalId,
         ]);
